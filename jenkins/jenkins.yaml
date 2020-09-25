@@ -1,0 +1,8 @@
+configuration-as-code:
+  version: 1
+  deprecated: warn
+  restricted: reject
+
+jenkins:
+  systemMessage: |-
+    Welcome to Jenkins!    ٩(◕‿◕)۶
