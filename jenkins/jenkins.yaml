@@ -7,14 +7,35 @@ jenkins:
   systemMessage: |-
     Welcome to Jenkins!    ٩(◕‿◕)۶
   
-  authorizationStrategy: "loggedInUsersCanDoAnything"
+  authorizationStrategy: 
+    globalMatrix:
+      grantedPermissions:
+        - "Job/Build:authenticated"
+        - "Job/Cancel:authenticated"
+        - "Job/Read:authenticated"
+        - "Overall/Administer:Acme Superusers"
+        - "Overall/Read:authenticated"
+        - "View/Read:authenticated"
+
   securityRealm:
-    local:
-      allowsSignup: false
-      enableCaptcha: false
-      users:
-        - id: ${JENKINS_ADMINISTRATOR_USERNAME:-administrator}
-          password: ${JENKINS_ADMINISTRATOR_PASSWORD:-changeit}
+    # local:
+    #   allowsSignup: false
+    #   enableCaptcha: false
+    #   users:
+    #     - id: ${JENKINS_ADMINISTRATOR_USERNAME:-administrator}
+    #       password: ${JENKINS_ADMINISTRATOR_PASSWORD:-changeit}
+    ldap:
+      configurations:
+      - groupSearchFilter: "(& (cn={0}) (objectclass=posixGroup) )"
+        inhibitInferRootDN: false
+        managerDN: "cn=service,ou=Users,dc=acme,dc=local"
+        managerPasswordSecret: ${LDAP_SERVICE_PASSWORD}
+        rootDN: "dc=acme,dc=local"
+        server: "ldap://slapd:389"
+      disableMailAddressResolver: false
+      disableRolePrefixing: true
+      groupIdStrategy: "caseInsensitive"
+      userIdStrategy: "caseInsensitive"
 
   crumbIssuer: "standard"
 

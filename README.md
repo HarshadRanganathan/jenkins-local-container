@@ -34,6 +34,16 @@ Creating volume "jenkins-local-container_jenkins_home" with default driver
 Building jenkins
 ```
 
+You can use any of the `uid` and `userPassword` mentioned in `users.ldif` file for successful LDAP login.
+
+e.g.
+```text
+username: user
+password: changeit
+```
+
+`Note: Only superuser has access to view/edit Manage Jenkins page. Check authorizationStrategy matrix in jenkins.yaml file`
+
 ### Plugins
 
 List of plugins to be installed is defined in `plugins.txt` file.
@@ -54,6 +64,7 @@ To administer the LDAP service, we make use of `phpLDAPadmin` which is a web-bas
 
 
 Login DN: cn=admin,dc=acme,dc=local
+
 Password: changeit
 
 ![phpLDAPadmin](images/phpLDAPadmin.png?raw=true)
