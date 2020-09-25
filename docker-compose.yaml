@@ -9,8 +9,18 @@ services:
       - 50000:50000
     environment:
       - TZ=Europe/Oslo
+
+    # Docker mounts a file under /run/secrets/<secret_name> in the services
+    secrets: 
+      - JENKINS_SSH_PRIVATE_KEY
+    env_file: ./jenkins/secrets.env
+
     volumes:
       - jenkins_home:/var/jenkins_home
+
+secrets:
+  JENKINS_SSH_PRIVATE_KEY:
+    file: ./jenkins/ssh/id_rsa
 
 volumes:
   jenkins_home:
