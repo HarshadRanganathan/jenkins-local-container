@@ -62,9 +62,9 @@ To administer the LDAP service, we make use of `phpLDAPadmin` which is a web-bas
 
 `phpLDAPadmin` is available at http://localhost:8090/.
 
-
+```text
 Login DN: cn=admin,dc=acme,dc=local
-
 Password: changeit
+```
 
 ![phpLDAPadmin](images/phpLDAPadmin.png?raw=true)
