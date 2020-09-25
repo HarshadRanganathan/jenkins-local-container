@@ -6,3 +6,19 @@ configuration-as-code:
 jenkins:
   systemMessage: |-
     Welcome to Jenkins!    ٩(◕‿◕)۶
+  
+  authorizationStrategy: "loggedInUsersCanDoAnything"
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+        - id: ${JENKINS_ADMINISTRATOR_USERNAME:-administrator}
+          password: ${JENKINS_ADMINISTRATOR_PASSWORD:-changeit}
+
+  crumbIssuer: "standard"
+
+unclassified:
+  location:
+    adminAddress: "Harshad Ranganathan <rharshad93@gmail.com>"
+    url: "http://localhost:8080"

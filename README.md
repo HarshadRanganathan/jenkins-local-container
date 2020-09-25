@@ -39,3 +39,7 @@ Building jenkins
 List of plugins to be installed is defined in `plugins.txt` file.
 
 `Note: If you are running in windows, make sure that the plugins.txt file line ending is LF instead of CRLF. Otherwise, the plugin installation will fail with Illegal characters found in URL error`
+
+### System Configuration
+
+System configuration is defined in the file `jenkins.yaml`.
