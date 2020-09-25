@@ -43,3 +43,17 @@ List of plugins to be installed is defined in `plugins.txt` file.
 ### System Configuration
 
 System configuration is defined in the file `jenkins.yaml`.
+
+### LDAP
+
+We run `SLDAP` service which is a stand-alone LDAP daemon. 
+
+To administer the LDAP service, we make use of `phpLDAPadmin` which is a web-based LDAP client providing multi-language administration for your LDAP server.
+
+`phpLDAPadmin` is available at http://localhost:8090/.
+
+
+Login DN: cn=admin,dc=acme,dc=local
+Password: changeit
+
+![phpLDAPadmin](images/phpLDAPadmin.png?raw=true)
