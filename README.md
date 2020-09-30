@@ -42,7 +42,7 @@ username: user
 password: changeit
 ```
 
-`Note: Only superuser has access to view/edit Manage Jenkins page. Check authorizationStrategy matrix in jenkins.yaml file`
+`Note: Only superuser has access to create jobs and manage jenkins settings. Check authorizationStrategy matrix in jenkins.yaml file for more details`
 
 ### Plugins
 
@@ -67,4 +67,22 @@ Login DN: cn=admin,dc=acme,dc=local
 Password: changeit
 ```
 
+You can view the users and groups configured for Jenkins LDAP access here.
+
 ![phpLDAPadmin](images/phpLDAPadmin.png?raw=true)
+
+### Nexus
+
+Nexus is available at http://localhost:8081/
+
+Get the admin password by running below command:
+
+```shell
+docker exec -it \
+ $(docker ps --filter "name=nexus_1" --quiet)  \
+ bash -c "cat /nexus-data/admin.password && echo"
+```
+
+Login to the console using the above password and username as `admin`.
+
+In the wizard, change the password and check `Enable anonymous access` so that we can access the artifacts without credentials.

@@ -37,9 +37,18 @@ services:
     depends_on:
       - slapd
 
+  nexus:
+    build:
+      context: ./nexus
+    ports:
+      - 8081:8081
+    volumes: 
+      - nexus_data:/nexus-data
+
 secrets:
   JENKINS_SSH_PRIVATE_KEY:
     file: ./jenkins/ssh/id_rsa
 
 volumes:
   jenkins_home:
+  nexus_data:

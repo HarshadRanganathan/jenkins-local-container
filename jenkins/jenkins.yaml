@@ -6,6 +6,9 @@ configuration-as-code:
 jenkins:
   systemMessage: |-
     Welcome to Jenkins!    ٩(◕‿◕)۶
+
+  numExecutors: 2
+  labelString: "jenkins-label"
   
   authorizationStrategy: 
     globalMatrix:
