@@ -9,16 +9,21 @@ services:
       - 50000:50000
     environment:
       - TZ=Europe/Oslo
-
-    # Docker mounts a file under /run/secrets/<secret_name> in the services
-    secrets: 
-      - JENKINS_SSH_PRIVATE_KEY
     env_file: ./jenkins/secrets.env
 
     volumes:
       - jenkins_home:/var/jenkins_home
     depends_on:
+      - agent-java
       - slapd
+
+  agent-java:
+    hostname: "agent-java"
+    build: agent-java
+    ports:
+      - 22:22
+    environment: 
+      - JENKINS_BUILD_AGENT_SSH_PUBLIC_KEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDjq/FcCCajtnUhHkUGinhGibJnMAa9paxOJ+dpLEUAg9CCdoelQ2kNjvtCE1T0qUquyDQYe9CKuHTZNeyPoaq/TquXoY4QIBv7k6DLMZmdUNLZ5tMHo5tmGO/rnS22AIkMa3PH1/IFPk4nBjSDbLpMm4QhqE0+Hp5z2icqHN85WZr74Hm7tsmO/b5UiKS4Fsc2s0f3Fo/tyWjwZJGLE1Mf2Ue6oOywNru1/aKfTv3qPzl7YAFVrjw2Fb2tkU8G9x+Q/dNEaezm0jh8hcb7bMLqKlHaicdg/2P6Pnwxq6TG/14A/9O3t6+q5p7UaGE8/UfuffhtZ4qh64Z+JvuRPTG9d7vMtNJkWoBsxQNmbbbtfkTid6NBzuN8V0Wb+4/ACnAc8WMnIerxIyoad7fMxNvDdorDsWPhripG/EnzFCT+J8jTvKD8RcZuHkPS0cg+UnpZxD1E5SNHxZXFD4fU8v7GwAxEPf6PMqph1GkU9ymHufKd1B+RB3k8F39mAx2Wa7aBTm6qch9sEdfw0jwo+i1fHpBrr4owYvl0pcS9Xdy0cdi3E3Q7A2XYIS8rnIkVudyNQxchSeXTyyFX9fFpMkM99rZrGYEdaOZuGZO9wrMDadzEwyDpzvOKtGUwYDH29aUe1OvRaWQQvNZQU0oD+sEByepizH7g+R6TM67GVV5jCQ== Sample
 
   slapd:
     build:
@@ -44,10 +49,6 @@ services:
       - 8081:8081
     volumes: 
       - nexus_data:/nexus-data
-
-secrets:
-  JENKINS_SSH_PRIVATE_KEY:
-    file: ./jenkins/ssh/id_rsa
 
 volumes:
   jenkins_home:

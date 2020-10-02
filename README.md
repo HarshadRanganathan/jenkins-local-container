@@ -86,3 +86,5 @@ docker exec -it \
 Login to the console using the above password and username as `admin`.
 
 In the wizard, change the password and check `Enable anonymous access` so that we can access the artifacts without credentials.
+
+![Nexus](images/nexus.png?raw=true)
