@@ -9,6 +9,9 @@ services:
       - 50000:50000
     environment:
       - TZ=Europe/Oslo
+
+    secrets:
+      - JENKINS_BUILD_AGENT_SSH_PRIVATE_KEY
     env_file: ./jenkins/secrets.env
 
     volumes:
@@ -49,6 +52,10 @@ services:
       - 8081:8081
     volumes: 
       - nexus_data:/nexus-data
+
+secrets:
+  JENKINS_BUILD_AGENT_SSH_PRIVATE_KEY:
+    file: ./jenkins/ssh/id_rsa
 
 volumes:
   jenkins_home:

@@ -59,7 +59,7 @@ jenkins:
       remoteFS: "/opt/jenkins_workspace/"
       launcher:
         ssh:
-          credentialsId: "AGENT_SSH_KEY"
+          credentialsId: "BUILD_AGENT_SSH_KEY"
           host: "agent-java"
           port: 22
           sshHostKeyVerificationStrategy:
@@ -73,7 +73,7 @@ credentials:
     - credentials:
       - basicSSHUserPrivateKey:
           scope: GLOBAL
-          id: "AGENT_SSH_KEY"
+          id: "BUILD_AGENT_SSH_KEY"
           description: "This SSH private key is needed to establish connection to jenkins agents."
           privateKeySource:
             directEntry:
